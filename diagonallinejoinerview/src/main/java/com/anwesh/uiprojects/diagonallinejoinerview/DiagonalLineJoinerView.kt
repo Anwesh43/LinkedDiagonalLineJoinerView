@@ -206,4 +206,13 @@ class DiagonalLineJoinerView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : DiagonalLineJoinerView {
+            val view : DiagonalLineJoinerView = DiagonalLineJoinerView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
