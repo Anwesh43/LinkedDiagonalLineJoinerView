@@ -180,6 +180,28 @@ class DiagonalLineJoinerView(ctx : Context) : View(ctx) {
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
         }
+    }
 
+    data class Renderer(var view : DiagonalLineJoinerView) {
+
+        private val dlj : DiagonalLineJoiner = DiagonalLineJoiner(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            dlj.draw(canvas, paint)
+            animator.animate {
+                dlj.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            dlj.startUpdating {
+                animator.start()
+            }
+        }
     }
 }
