@@ -30,7 +30,7 @@ fun Canvas.drawJoiner(i : Int, sf : Float, xGap : Float, yGap : Float, size : Fl
     val sfi1 = sfi.divideScale(0, 2)
     val sfi2 = sfi.divideScale(1, 2)
     drawCircle(xGap, -yGap, size * sfi1, paint)
-    drawLine(0f, 0f, xGap * sfi2, -yGap * sfi, paint)
+    drawLine(0f, 0f, xGap * sfi2, -yGap * sfi2, paint)
 }
 
 fun Canvas.drawDiagonalLineJoiner(scale : Float, w : Float, h : Float, paint : Paint) {
@@ -40,7 +40,7 @@ fun Canvas.drawDiagonalLineJoiner(scale : Float, w : Float, h : Float, paint : P
     val size : Float = Math.min(w, h) / sizeFactor
     for (j in 0..(circles - 1)) {
         save()
-        translate(w + xGap * j, h - yGap * j)
+        translate(xGap * j, h - yGap * j)
         drawJoiner(j, sf, xGap, yGap, size, paint)
         restore()
     }
